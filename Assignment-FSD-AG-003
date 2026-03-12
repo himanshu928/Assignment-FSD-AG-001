@@ -1,0 +1,280 @@
+# Question 01 : 
+     Create a layout with three boxes side by side using Flexbox. The first box
+    should have twice the width of the other two. Provide the HTML and CSS code
+    snippets.
+
+# Answer 01 :
+    To create three boxes side by side using Flexbox, we use display: flex on the container.
+    To make the first box twice the width of the other two, we use the flex property.
+
+    HTML Code : 
+        <div class="container">
+            <div class="box box1">Box 1</div>
+            <div class="box">Box 2</div>
+            <div class="box">Box 3</div>
+        </div>
+    
+    CSS Code : 
+        .container {
+             display: flex;
+        }
+
+        .box {
+            flex: 1;
+            padding: 20px;
+            margin: 5px;
+            background-color: lightgray;
+            text-align: center;
+        }
+
+        .box1 {
+            flex: 2;
+        }
+
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+
+
+# Question 02 : 
+    Using CSS Grid, create a 2x2 grid layout where the first row spans two
+    columns, and the second row has two equal columns. Provide the HTML and CSS code
+    snippets.
+
+# Answer 02 : 
+    To create a 2×2 grid layout, we use CSS Grid.
+    In this layout:
+
+    The first row spans two columns.
+
+    The second row contains two equal columns.
+
+    HTML Code : 
+        <div class="grid-container">
+            <div class="item1">Header</div>
+            <div class="item2">Box 1</div>
+            <div class="item3">Box 2</div>
+        </div>
+
+
+    CSS Code :
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .item1 {
+            grid-column: 1 / 3;
+            background-color: lightblue;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .item2, .item3 {
+            background-color: lightgray;
+            padding: 20px;
+            text-align: center;
+        }
+
+
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+
+
+# Question 03 : 
+    Write a media query that changes the background color of the body to light
+    grey when the screen width is less than 600px.
+
+
+# Answer 03 : 
+    A media query is used in CSS to apply styles based on the screen size or device type.
+    In this case, we want to change the background color of the body to light grey when the screen width is less than 600px.
+
+    Code : 
+        @media (max-width: 600px) {
+            body {
+                background-color: lightgrey;
+            }
+        }
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+
+
+
+# Question 04 : 
+    Create a button that changes its background color to blue and scales up
+    slightly when hovered over, using CSS transitions. Provide the HTML and CSS code
+    snippets
+
+# Answer 04 : 
+    We can create a button that changes its background color to blue and slightly increases in size when hovered by using the :hover selector and transition property.
+
+    HTML Code : 
+
+        <button class="btn">Click Me</button>
+
+
+    CSS Code :
+
+        .btn {
+            padding: 10px 20px;
+            background-color: gray;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .btn:hover {
+            background-color: blue;
+            transform: scale(1.1);
+        }
+
+
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+
+
+# Question 05 : 
+    Use the ::before pseudo-element to add a decorative icon before each list
+    item in an unordered list with the class name ‘decorated-list’. Provide the HTML and
+    CSS code snippets.
+
+# Answer 05 : 
+    The ::before pseudo-element is used in CSS to insert content before an element’s actual content.
+    Here, we will add a decorative icon before each list item in an unordered list with the class decorated-list.
+
+    HTML Code : 
+
+        <ul class="decorated-list">
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+        </ul> 
+  
+    CSS Code : 
+
+        .decorated-list li::before {
+            content: "★ ";
+            color: red;
+            margin-right: 5px;
+        }
+
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+
+
+# Question 06 : 
+    Create a simple animation that moves a square box from left to right
+    infinitely. Provide the HTML and CSS code snippets.
+
+# Answer 06 : 
+    We can create this animation using CSS @keyframes and the animation property.
+
+    HTML Code : 
+    
+    <div class="box"></div>
+    
+    CSS Code : 
+
+        .box {
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            position: relative;
+            animation: moveBox 3s linear infinite;
+        }
+
+        @keyframes moveBox {
+            from {
+                left: 0;
+            }
+            to {
+                left: 300px;
+            }
+        }
+
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+
+
+# Question 07 : 
+    Explain the difference between position: absolute; and position: fixed; in CSS.
+
+# Answer 07 : 
+    Difference Between position: absolute and position: fixed in CSS
+
+    Both absolute and fixed are CSS positioning properties used to place elements at a specific position on a webpage, but they behave differently.
+
+    1. position: absolute
+
+    When an element has position: absolute, it is positioned relative to its nearest positioned parent element (a parent with position: relative, absolute, or fixed).
+    If there is no positioned parent, it will be positioned relative to the entire webpage.
+
+    Example : 
+
+        .box {
+            position: absolute;
+            top: 50px;
+            left: 100px;
+        }
+
+    2. position: fixed : 
+
+        When an element has position: fixed, it is positioned relative to the browser window (viewport).
+        It stays in the same position even when the page is scrolled.
+
+        Example : 
+
+            .box {
+                position: fixed;
+                bottom: 10px;
+                right: 10px;
+            }
+
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+
+
+# Question 08 : 
+    Create a layered layout where a semi-transparent overlay covers an image
+    using z-index. Provide the HTML and CSS code snippets.
+
+# Answer 08 : 
+    We can create a layered layout by placing an overlay on top of an image using position and z-index.
+    The image will be placed at the bottom layer, and the overlay will appear above it with some transparency.
+
+    HTML Code
+        <div class="container">
+            <img src="image.jpg" alt="Sample Image">
+            <div class="overlay">Overlay Text</div>
+        </div>
+
+    CSS Code :
+
+        .container {
+            position: relative;
+            width: 300px;
+        }
+
+        .container img {
+            width: 100%;
+            display: block;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
