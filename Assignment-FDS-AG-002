@@ -1,0 +1,225 @@
+# Question 01 :
+What are semantic HTML elements? Why is using them important for web
+development?
+
+# Answer 01:
+Semantic HTML elements are HTML tags that clearly describe the meaning and purpose of the content they contain. These elements help both the browser and developers understand the structure of a webpage.
+
+Examples of semantic HTML elements include:
+
+<header>, <nav>, <section>, <article>, <footer>, and <main>.
+For example:
+
+<header> – Defines the header section of a webpage.
+
+<nav> – Contains navigation links.
+
+<section> – Represents a section of content.
+
+<article> – Represents independent content like a blog post.
+
+<footer> – Defines the footer of the page.
+
+-----------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------
+
+
+# Question 02 :
+You're designing a blog page. Which semantic elements would you use to
+structure the page, and why?
+
+# Answer 02 :
+Using semantic elements like <header>, <nav>, <main>, <article>, <section>, and <footer> helps create a well-structured blog page, improves readability, and makes the webpage easier for search engines and users to understand.
+
+    Some important semantic elements used in a blog page are:
+
+    <header>
+    This element is used for the top section of the page, which may include the blog title, logo, or introduction.
+
+    <nav>
+    This element contains the navigation links such as Home, About, Blog, and Contact.
+
+    <main>
+    This tag represents the main content area of the webpage.
+
+    <article>
+    It is used to display an individual blog post. Each blog post can be written inside an <article> tag.
+
+    <section>
+    This element is used to divide the page into different sections such as categories, featured posts, or comments.
+
+    <footer>
+    This element is used for the bottom part of the webpage, which may contain copyright information, contact details, or social media links.
+    <header>
+    <h1>My Blog</h1>
+    </header>
+
+    <nav>
+    <a href="#">Home</a>
+    <a href="#">Blog</a>
+    <a href="#">Contact</a>
+    </nav>
+
+    <main>
+    <article>
+        <h2>My First Blog Post</h2>
+        <p>This is my first blog post.</p>
+    </article>
+    </main>
+
+    <footer>
+    <p>Copyright 2026</p>
+    </footer>
+
+------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
+
+
+# Question 03 :
+How can you make an HTML form more accessible to users with
+disabilities?
+
+# Answer 03 :
+By using labels, clear instructions, correct input types, and proper structure, HTML forms become easier to use for people with disabilities and improve the overall user experience.
+
+<form>
+<label for="name">Name:</label>
+<input type="text" id="name" name="name">
+<label for="email">Email:</label>
+<input type="email" id="email" name="email">
+<button type="submit">Submit</button>
+</form>
+
+---------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------
+
+
+# Question 04 :
+Identify and correct the errors in the following CSS code:
+p {
+font-size: 16;
+color: #333
+margin-top 10px;
+}
+
+# Answer 04 :
+The given CSS code contains a few syntax errors:
+
+    font-size: 16; is missing a unit (like px).
+
+    color: #333 is missing a semicolon ;.
+
+    margin-top 10px; is missing a colon :.
+
+
+    Correct Code :
+        p {
+            font-size: 16px;
+            color: #333;
+            margin-top: 10px;
+        }
+
+---------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------
+
+# Question 05 :
+Write CSS rules to style all <h2> elements inside a <section> with a blue
+color and center alignment.
+
+# Answer 05 :
+To style all <h2> elements inside a <section>, we use a descendant selector in CSS. This selector targets only the <h2> tags that are inside the <section> element.
+
+    section h2 {
+        color: blue;
+        text-align: center;
+    }
+
+
+---------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------
+
+
+# Question 06 :
+Explain the CSS box model and its components.
+
+# Answer 06 :
+The CSS Box Model is a concept used in web design to describe the layout and spacing of elements on a webpage. Every HTML element is treated as a rectangular box, and the box model controls how much space the element occupies.
+
+    The CSS box model has four main components:
+
+    1. Content
+    This is the actual content of the element, such as text, images, or videos. The size of the content area can be controlled using properties like width and height.
+
+    2. Padding
+    Padding is the space between the content and the border. It creates space inside the element so the content does not touch the border.
+
+    3. Border
+    The border is the edge that surrounds the padding and content. It can have different styles, colors, and widths.
+
+    4. Margin
+    Margin is the space outside the border. It creates distance between the element and other elements on the webpage.
+
+    div {
+        width: 200px;
+        padding: 20px;
+        border: 2px solid black;
+        margin: 15px;
+    }
+
+---------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------
+
+
+# Question 07 :
+How do the relative, absolute, and fixed positioning properties differ in
+CSS?
+
+# Answer 07 :
+In CSS, the position property is used to control how an element is placed on a webpage. Three common positioning types are relative, absolute, and fixed.
+
+1.  Relative Positioning
+
+    When an element has position: relative, it is positioned relative to its normal position in the document. The element can be moved using properties like top, left, right, and bottom.
+
+    .box {
+    position: relative;
+    top: 10px;
+    left: 20px;
+    } 2. Absolute Positioning
+
+    When an element has position: absolute, it is positioned relative to its nearest positioned ancestor (an ancestor with position other than static). If no such ancestor exists, it is positioned relative to the entire webpage.
+
+    .box {
+    position: absolute;
+    top: 50px;
+    left: 100px;
+    } 3. Fixed Positioning
+
+    When an element has position: fixed, it is positioned relative to the browser window (viewport). It stays in the same position even when the page is scrolled.
+
+    .box {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    }
+
+
+---------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------
+
+
+# Question 08 :
+Write a CSS rule to set a background image for a <div> with the class
+.banner, ensuring the image covers the entire area without repeating.
+
+# Answer 08 :
+To set a background image for a <div> with the class .banner, and make sure the image covers the entire area without repeating, we use the properties background-image, background-size, and background-repeat.
+
+    .banner {
+        background-image: url("image.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+---------------------------------------------------------------------------------------------------------------
