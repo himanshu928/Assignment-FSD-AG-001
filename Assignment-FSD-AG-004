@@ -1,0 +1,285 @@
+# Question 01 : 
+    Explain the purpose of version control systems like Git. Why are they
+    essential in modern software development?
+
+# Answer 01 : 
+    A Version Control System (VCS) is a tool that helps developers track and manage changes in source code over time.
+
+    Purpose of Version Control Systems
+
+        1. Track Changes
+        It records every change made to the code so developers can see what was modified and when.
+
+        2. Collaboration
+        Multiple developers can work on the same project at the same time without overwriting each other's work.
+
+        3. Backup and Recovery
+        Previous versions of the code are stored, so if a mistake happens, developers can restore an earlier version.
+
+        4. Branching and Merging
+        Developers can create separate branches to work on new features and later merge them into the main project.
+
+    They Are Essential in Modern Software Development
+
+        1. Team Collaboration – Makes it easier for teams to work together on large projects.
+
+        2. Code History – Maintains a complete history of changes.
+
+        3. Error Recovery – Allows developers to revert to earlier working versions.
+
+        4. Project Management – Helps organize and manage large codebases efficiently.
+
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+
+
+# Question 02 : 
+    List the typical steps you would follow when working with Git to make
+    changes to a project and share them on GitHub.
+
+# Answer 02 : 
+    Steps to Make Changes with Git and Share on GitHub
+
+    When working on a project using Git and sharing it on GitHub, developers usually follow these steps:
+
+1. Clone the Repository
+
+First, download the project from GitHub to your computer.
+
+git clone repository-url
+2. Navigate to the Project Folder
+
+Move into the project directory.
+
+cd project-folder
+3. Create or Modify Files
+
+Make the necessary changes or add new files to the project.
+
+4. Check the Status
+
+See which files have been changed.
+
+git status
+5. Add Changes to Staging Area
+
+Add the modified files to the staging area.
+
+git add .
+6. Commit the Changes
+
+Save the changes with a message describing what was updated.
+
+git commit -m "Updated project files"
+7. Push Changes to GitHub
+
+Upload the committed changes to the GitHub repository.
+
+git push origin main
+
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+
+# Question 03 : 
+    What is the purpose of a .gitignore file in a Git repository? Provide an
+    example of how to ignore all .log files.
+
+# Answer 03 :
+    Purpose of .gitignore File
+
+        A .gitignore file is used in a Git repository to tell Git which files or folders should not be tracked or uploaded to the repository.
+
+        Sometimes projects generate files automatically (like log files, temporary files, or build files). These files are usually not important for the project code, so developers add them to the .gitignore file to prevent them from being committed.
+
+        Why .gitignore is Useful
+
+        Prevents unnecessary files from being uploaded.
+
+        Keeps the repository clean and organized.
+
+        Protects sensitive data such as API keys or configuration files.
+
+        Reduces repository size by excluding temporary or log files.
+
+        Example: Ignoring All .log Files
+
+        To ignore all log files in a project, add the following line in the .gitignore file:
+
+        *.log
+
+        Example : 
+             .gitignore File
+
+         # Ignore all log files
+
+            *.log
+
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+
+
+# Question 04 : 
+    You are currently on the main branch and want to switch to a branch
+    named feature-login. Write the Git command to do this.
+
+# Answer 04 : 
+    To switch from the main branch to another branch named feature-login in Git, you can use the following command:
+
+    git checkout feature-login
+
+1. git checkout → Used to switch between branches.
+
+2. feature-login → The name of the branch you want to move to.
+
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+
+
+# Question 05 : 
+     Declare a variable named age using let and assign it the value 25. Then,
+    update its value to 30.
+
+# Answer 05 : 
+    To declare a variable named age using let, assign it the value 25, and then update it to 30, you can write the following code:
+
+let age = 25;
+age = 30;
+
+Explanation : 
+
+    let age = 25; → Declares a variable named age and assigns the value 25.
+
+    age = 30; → Updates the value of the same variable to 30.
+
+
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+
+# Question 06 : 
+    Declare a constant named PI with the value 3.14159. Attempting to
+    reassign it should result in an error. Demonstrate this behavior by writing out the
+    outcome.
+
+# Answer 06 : 
+    In JavaScript, a constant is declared using the const keyword. Once a constant value is assigned, it cannot be changed. If we try to reassign it, JavaScript will produce an error.
+
+Code Example : 
+
+    const PI = 3.14159;
+
+PI = 3.14; // This will cause an error
+
+
+Outcome : When the code tries to change the value of PI, JavaScript will show an error like this:
+
+TypeError: Assignment to constant variable.
+
+
+Explanation :
+
+const PI = 3.14159; → Declares a constant named PI.
+
+The value of a constant cannot be reassigned after it is defined.
+
+Trying to change it results in a TypeError.
+
+
+
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+
+# Question 07 : 
+    You are given the following array:
+const colors = ["red", "green", "blue", "yellow", "purple"];
+1. Access and print the first element of the array.
+2. Access and print the last element of the array.
+3. Access and print the third element of the array.
+
+# Answer 07 : 
+    const colors = ["red", "green", "blue", "yellow", "purple"];
+
+1. Print the First Element :
+
+    console.log(colors[0]);
+
+Output :
+     red
+
+
+2. Print the Last Element :
+
+    console.log(colors[colors.length - 1]);
+
+Output:
+    purple
+
+
+3. Print the Third Element :
+
+    console.log(colors[2]);
+
+Output:
+    blue
+
+
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+
+# Question 08 : 
+    Given x = 10 and y = 5, write expressions to:
+1. Add x and y
+2. Check if x is greater than y
+3. Check if x is equal to y
+
+
+# Answer 08 : 
+    let x = 10;
+    let y = 5;
+
+1. Add x and y : 
+
+    let sum = x + y;
+    console.log(sum);
+
+Output: 15
+
+2. Check if x is greater than y : 
+
+    console.log(x > y);
+
+Output: true
+
+3. Check if x is equal to y :
+
+    console.log(x == y);
+
+Output: false
+
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+
+# Question 09 : 
+    Identify the data types of the following values:
+1. "Hello"
+2. 42
+3. true
+4. undefined
+
+
+# Answer 09 : 
+
+1. "Hello" → String
+A string is used to represent text and is written inside quotation marks.
+
+2. 42 → Number
+A number represents numeric values such as integers or decimals.
+
+3. true → Boolean
+A boolean represents logical values, which can be either true or false.
+
+4. undefined → Undefined
+This means a variable has been declared but no value has been assigned to it yet.
+
+
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
