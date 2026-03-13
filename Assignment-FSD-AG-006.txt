@@ -1,0 +1,383 @@
+# Question 01 : 
+    Explain what the forEach method does in JavaScript arrays and write code
+that uses forEach to display each student's name from an array of student objects to the
+console.
+// Array of student objects
+const students = [
+{ name: "Rahul", age: 20 },
+{ name: "Priya", age: 19 },
+{ name: "Amit", age: 21 },
+{ name: "Sneha", age: 20 }
+];
+
+
+# Answer 01 : 
+    forEach Method in JavaScript
+
+    The forEach() method in JavaScript is used to loop through each element of an array and perform an action on it. It executes a function once for every element in the array.
+
+    It is commonly used when we want to read or display data from an array.
+
+    Example Code
+    // Array of student objects
+    const students = [
+        { name: "Rahul", age: 20 },
+        { name: "Priya", age: 19 },
+        { name: "Amit", age: 21 },
+        { name: "Sneha", age: 20 }
+    ];
+
+    // Using forEach to display each student's name : 
+
+    students.forEach(function(student) {
+        console.log(student.name);
+    });
+
+    Output : 
+
+    Rahul
+    Priya
+    Amit
+    Sneha
+
+***************************************************************************************************
+***************************************************************************************************
+
+
+# Question 02 : 
+    You have an array of product prices in rupees. Write code using the map
+    method to create a new array that contains the same prices but with 18% GST added to
+    each price.
+
+    const originalPrices = [100, 250, 500, 750, 1000];
+
+# Answer 02 : 
+    The map() method in JavaScript creates a new array by applying a function to each element of the original array.
+
+    Given Array : 
+
+    const originalPrices = [100, 250, 500, 750, 1000];
+
+    Code to Add 18% GST : 
+
+    const pricesWithGST = originalPrices.map(function(price) {
+        return price + (price * 0.18);
+    });
+
+    console.log(pricesWithGST);
+
+    Output : [118, 295, 590, 885, 1180]
+
+
+***************************************************************************************************
+***************************************************************************************************
+
+# Question 03 : 
+     A school wants to find all students who scored more than 80 marks in their
+exam. The following code has an error that prevents it from working correctly. Fix the
+code and explain what was wrong.
+const students = [
+ { name: "Raj", marks: 85 },
+ { name: "Sita", marks: 92 },
+ { name: "Vikram", marks: 78 },
+ { name: "Meera", marks: 88 }
+];
+const topStudents = students.filter(student => {
+ student.marks > 80;
+});
+
+
+# Answer 03 : 
+    Corrected Code : 
+
+    const students = [
+        { name: "Raj", marks: 85 },
+        { name: "Sita", marks: 92 },
+        { name: "Vikram", marks: 78 },
+        { name: "Meera", marks: 88 }
+    ];
+
+const topStudents = students.filter(student => {
+  return student.marks > 80;
+});
+
+console.log(topStudents);
+
+Output :
+[
+  { name: "Raj", marks: 85 },
+  { name: "Sita", marks: 92 },
+  { name: "Meera", marks: 88 }
+]
+
+
+***************************************************************************************************
+***************************************************************************************************
+
+# Question 04 : 
+    Write code using the find method to locate a book with the title "Harry
+Potter" from an array of book objects. If the book is found, display its author name,
+otherwise display "Book not found".
+// Array of book objects
+const books = [
+{ title: "Gitanjali", author: "Rabindranath Tagore" },
+{ title: "Harry Potter", author: "J.K. Rowling" },
+{ title: "The God of Small Things", author: "Arundhati Roy" },
+{ title: "Midnight's Children", author: "Salman Rushdie" }
+];
+
+# Answer 04 : 
+    JavaScript Code Using find() : 
+
+// Array of book objects :
+
+const books = [
+  { title: "Gitanjali", author: "Rabindranath Tagore" },
+  { title: "Harry Potter", author: "J.K. Rowling" },
+  { title: "The God of Small Things", author: "Arundhati Roy" },
+  { title: "Midnight's Children", author: "Salman Rushdie" }
+];
+
+const book = books.find(b => b.title === "Harry Potter");
+
+if (book) {
+  console.log(book.author);
+} else {
+  console.log("Book not found");
+}
+
+***************************************************************************************************
+***************************************************************************************************
+
+# Question 05 :
+    Explain how the sort method works in JavaScript and write code to sort an
+array of employee objects by their salary in descending order (highest salary first).
+// Array of employee objects
+const employees = [
+ { name: "Rajesh", salary: 45000 },
+ { name: "Priya", salary: 55000 },
+ { name: "Amit", salary: 40000 },
+ { name: "Kavya", salary: 60000 }
+];
+
+
+# Answer 05 : 
+
+  //  sort() Method in JavaScript :
+
+The sort() method in JavaScript is used to arrange the elements of an array in a specific order, such as ascending or descending.
+It can sort numbers, strings, or objects. When sorting objects, we provide a comparison function to tell JavaScript how to compare the values.
+
+The comparison function takes two elements (a and b):
+
+If the result is positive, b comes before a.
+
+If the result is negative, a comes before b.
+
+If the result is 0, the order remains the same.
+
+Code to Sort Employees by Salary (Descending Order):
+
+// Array of employee objects
+const employees = [
+  { name: "Rajesh", salary: 45000 },
+  { name: "Priya", salary: 55000 },
+  { name: "Amit", salary: 40000 },
+  { name: "Kavya", salary: 60000 }
+];
+
+employees.sort((a, b) => b.salary - a.salary);
+
+console.log(employees);
+Output
+[
+  { name: "Kavya", salary: 60000 },
+  { name: "Priya", salary: 55000 },
+  { name: "Rajesh", salary: 45000 },
+  { name: "Amit", salary: 40000 }
+]
+
+***************************************************************************************************
+***************************************************************************************************
+
+# Question 06 : 
+    Write code using the reduce method to calculate the total value of all items
+in a shopping cart. Each item has a price and quantity. Also find the most expensive
+single item in the cart.
+// Shopping cart with items
+const cart = [
+{ name: "Laptop", price: 50000, quantity: 1 },
+{ name: "Mouse", price: 500, quantity: 2 },
+{ name: "Keyboard", price: 1500, quantity: 1 },
+{ name: "Monitor", price: 15000, quantity: 1 }
+];
+
+
+# Answer 06 : 
+    1. Calculate Total Value of Cart using reduce() : 
+
+// Shopping cart with items
+const cart = [
+  { name: "Laptop", price: 50000, quantity: 1 },
+  { name: "Mouse", price: 500, quantity: 2 },
+  { name: "Keyboard", price: 1500, quantity: 1 },
+  { name: "Monitor", price: 15000, quantity: 1 }
+];
+
+const totalValue = cart.reduce((total, item) => {
+
+  return total + (item.price * item.quantity);
+
+}, 0);
+
+console.log("Total Cart Value:", totalValue);
+
+Output : Total Cart Value: 67500
+
+
+***************************************************************************************************
+***************************************************************************************************
+
+# Question 07 : 
+     Explain what array destructuring is and write code that extracts the first
+two colors from an array of colors into separate variables using destructuring.
+// Array of colors
+const colors = ["red", "blue", "green", "yellow", "purple"];
+
+# Answer 07 : 
+    Array Destructuring in JavaScript
+
+Array destructuring is a feature in JavaScript that allows us to extract values from an array and store them in separate variables easily.
+Instead of accessing elements using indexes like array[0] or array[1], destructuring lets us assign them directly to variables in a single line.
+
+Example Code : 
+
+// Array of colors
+const colors = ["red", "blue", "green", "yellow", "purple"];
+
+// Destructuring
+const [firstColor, secondColor] = colors;
+
+console.log(firstColor);
+console.log(secondColor);
+
+
+Output : 
+
+red
+blue
+
+
+***************************************************************************************************
+***************************************************************************************************
+
+# Question 08 : 
+    You have a student object with name, age, and marks properties. Write
+code using object destructuring to extract these values into separate variables and also
+rename the marks property to score while destructuring.
+// Student object
+const student = {
+name: "Arjun",
+age: 20,
+marks: 85,
+city: "Mumbai"
+};
+
+
+# Answer 08 : 
+    Object Destructuring in JavaScript
+
+Object destructuring allows us to extract values from an object and store them in separate variables easily. We can also rename properties while destructuring.
+
+Example Code : 
+
+// Student object
+const student = {
+  name: "Arjun",
+  age: 20,
+  marks: 85,
+  city: "Mumbai"
+};
+
+// Object destructuring :
+
+const { name, age, marks: score } = student;
+
+console.log(name);
+console.log(age);
+console.log(score);
+
+Output : 
+
+Arjun
+20
+85
+
+***************************************************************************************************
+***************************************************************************************************
+
+# Question 09 : 
+    Write a function called calculateTotal that can accept any number of
+prices as arguments and returns their sum. Use the rest operator to handle the variable
+number of parameters.
+
+
+# Answer 09 : 
+    JavaScript Function Using Rest Operator
+
+The rest operator (...) allows a function to accept any number of arguments and store them in an array.
+
+Code Example :
+
+function calculateTotal(...prices) {
+  let total = 0;
+
+  for (let price of prices) {
+    total += price;
+  }
+
+  return total;
+}
+
+// Example usage : 
+
+console.log(calculateTotal(100, 200, 300, 400));
+
+Output : 1000
+
+
+***************************************************************************************************
+***************************************************************************************************
+
+# Question 10 : 
+    You have two arrays of student names and need to create a new array
+that contains all students from both arrays. Also, you have two objects representing a
+student's basic info and marks. Write code using the spread operator to solve both
+scenarios.
+const classA = ["Rahul", "Priya", "Amit"];
+const classB = ["Sneha", "Vikram", "Pooja"];
+
+
+# Answer 10 : 
+    Using the Spread Operator (...) in JavaScript
+
+The spread operator (...) is used to expand elements of an array or properties of an object. It helps combine arrays or objects easily.
+
+1. Combine Two Arrays of Students
+const classA = ["Rahul", "Priya", "Amit"];
+const classB = ["Sneha", "Vikram", "Pooja"];
+
+const allStudents = [...classA, ...classB];
+
+console.log(allStudents);
+
+2. Combine Two Objects (Student Info + Marks)
+const studentInfo = { name: "Rahul", age: 20 };
+const studentMarks = { math: 85, science: 90 };
+
+const student = { ...studentInfo, ...studentMarks };
+
+console.log(student);
+
+***************************************************************************************************
+***************************************************************************************************
