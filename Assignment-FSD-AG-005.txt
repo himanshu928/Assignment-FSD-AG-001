@@ -1,0 +1,328 @@
+# Question 01 : 
+
+     Create an object named student with the following properties:
+● name: "Rahul"
+● age: 21
+● courses: an array containing "Math", "Physics", and "Chemistry"
+Then, perform the following operations:
+1. Add a new property grade with the value "A".
+2. Update the age to 22.
+3. Delete the courses property.
+
+
+# Answer 01 : 
+    First, create an object named student with the given properties.
+
+    let student = {
+        name: "Rahul",
+        age: 21,
+        courses: ["Math", "Physics", "Chemistry"]
+    };
+
+
+    1. Add a New Property grade : 
+
+        student.grade = "A";
+
+    2. Update the Age to 22 :
+
+        student.age = 22;
+
+    3. Delete the courses Property : 
+
+        delete student.courses;
+
+    Final Object :
+
+    After performing all operations, the object will look like this:
+
+    {
+        name: "Rahul",
+        age: 22,
+        grade: "A"
+    }
+
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+
+# Question 02 : 
+     Write a function checkEligibility that takes an age as a parameter
+    and returns:
+    ● "Eligible" if age is 18 or above
+    ● "Not Eligible" if age is below 18
+    Use an if-else statement.
+
+# Answer 02 : 
+    Function to checkEligibility that takes an age as a parameter and returns:
+
+    function checkEligibility(age) {
+        if (age >= 18) {
+            return "Eligible";
+        } else {
+            return "Not Eligible";
+        }
+    }
+        
+
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+
+# Question 03 : 
+    Write a function getDayName that takes a number (1-7) and returns the
+    corresponding day of the week. Use a switch statement.
+
+
+# Answer 03 : 
+        Function getDayName that takes a number (1-7) and returns the corresponding day of the week.
+
+        function getDayName(day) {
+            switch(day) {
+                case 1:
+                    return "Monday";
+                case 2:
+                    return "Tuesday";
+                case 3:
+                    return "Wednesday";
+                case 4:
+                    return "Thursday";
+                case 5:
+                    return "Friday";
+                case 6:
+                    return "Saturday";
+                case 7:
+                    return "Sunday";
+                default:
+                    return "Invalid day number";
+            }
+        }
+
+
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+
+# Question 04 : 
+    Rewrite the checkEligibility function from Question 2 using the
+    ternary operator.
+
+# Answer 04 :
+
+    fucntion checkEligibility(age) {
+        return age >= 18 ? "Eligible" : "Not Eligible";
+    }
+
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+
+
+# Question 05 : 
+    Given an array numbers = [1, 2, 3, 4, 5], perform the following:
+        1. Use a for loop to print each number.
+        2. Use a while loop to print each number.
+        3. Use a for-in loop to print each index.
+        4. Use a for-of loop to print each number.
+
+# Answer 05 : 
+
+    let numbers = [1, 2, 3, 4, 5];
+
+1. Using a for Loop to Print Each Number : 
+
+    for (let i = 0; i < numbers.length; i++) {
+        console.log(numbers[i]);
+    } 
+
+2. Using a while Loop to Print Each Number : 
+
+    let i = 0;
+
+    while (i < numbers.length) {
+        console.log(numbers[i]);
+        i++;
+    }
+
+3. Using a for-in Loop to Print Each Index : 
+
+    for (let index in numbers) {
+        console.log(index);
+    }
+
+4. Using a for-of Loop to Print Each Number : 
+
+    for (let num of numbers) {
+        console.log(num);
+    }
+
+
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+
+# Question 06 : 
+    Explain what functions are in JavaScript and provide an example of a
+    function that adds two numbers.
+
+# Answer 06 :
+    A function in JavaScript is a block of code that is designed to perform a specific task.
+    Functions help make code reusable, organized, and easier to understand. A function runs only when it is called (invoked).
+
+    Functions can take parameters (inputs) and return a result (output).
+
+    Example: Function to Add Two Numbers : 
+
+        function addNumbers(a, b) {
+            return a + b;
+        }
+
+
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+
+# Question 07 : 
+     Convert the add function from Question 6 into an arrow function.
+
+# Answer 07 :   
+
+        const addNumbers = (a, b) => {
+            return a + b;
+        }
+
+        Explanation
+
+const add → Declares a function stored in a variable named add.
+
+(a, b) → These are the parameters of the function.
+
+=> → This symbol defines an arrow function.
+
+return a + b → Returns the sum of the two numbers.
+
+
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+
+# Question 08 : 
+    Write a function greet that takes a name and a callback function. The
+    greet function should call the callback with the name.
+
+# Answer 08 : 
+
+    JavaScript Callback Function Example :
+
+        function greet(name, callback) {
+            callback(name);
+        }
+
+        function sayHello(name) {
+            console.log("Hello " + name);
+        }
+
+        greet("Rahul", sayHello);
+
+
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+
+# Question 09 : 
+
+    Given the array:
+    const fruits = ["apple", "banana", "cherry"];
+1. What is the length of the array?
+2. Add "date" to the end of the array using the length property.
+
+# Answer 09 : 
+
+const fruits = ["apple", "banana", "cherry"];
+
+1. length of the array : 
+    
+    console.log(fruits.length);
+
+    OUTPUT : 3
+
+2. Add "date" to the End Using the length Property : 
+
+    fruits[fruits.length] = "date";
+
+    console.log(fruits);
+
+    OUTPUT:   ["apple", "banana", "cherry", "date"]
+
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+
+# Question 10 : 
+    Given the string text = " Hello World! ", perform the following:
+1. Trim the whitespace.
+2. Convert to uppercase.
+3. Check if it includes "World".
+
+# Answer 10 : 
+
+    let text = " Hello World! ";
+
+1. Trim the Whitespace : 
+
+    let trimmedText = text.trim();
+
+    console.log(trimmedText);
+
+OUTPUT :  Hello World!  
+
+2. Convert to Uppercase :
+
+    let upperText = text.toUpperCase();
+
+    console.log(upperText);
+
+OUTPUT : HELLO WORLD!
+
+
+3. Check if it Includes "World" :
+
+    console.log(text.includes("World"));
+
+OUTPUT : true
+
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+
+# Question 11 : 
+     Given the array numbers = [1, 2, 3, 4, 5], perform the following:
+1. Add 6 to the end.
+2. Remove the first element.
+3. Find the index of 4.
+4. Check if all numbers are greater than 0.
+
+# Answer 11 :
+
+    let numbers = [1, 2, 3, 4, 5];
+
+1. Add 6 to the End :
+
+    numbers.push(6);
+
+    console.log(numbers);
+
+OUTPUT : [1, 2, 3, 4, 5, 6]
+
+2. Remove the First Element :
+
+    numbers.shift();
+
+    console.log(numbers);
+
+OUTPUT : [2, 3, 4, 5, 6]
+
+3. Find the Index of 4 :
+
+    console.log(numbers.indexOf(4));
+
+OUTPUT : 2
+
+4. Check if All Numbers are Greater Than 0 :
+
+    console.log(numbers.every(num => num > 0));
+
+Output : true
+
+_______________________________________******************************_______________________________________
+_______________________________________******************************_______________________________________
