@@ -1,0 +1,376 @@
+# Question 01 : 
+    In simple words, what are React Hooks? Create a small component that
+shows a button. When the button is clicked, toggle the text between “On” and “Off”.
+
+# Answer 01 : 
+    In React, Hooks are special functions that allow functional components to use features like state and lifecycle methods.
+
+    Toggle “On” and “Off” Button : 
+
+import React, { useState } from "react";
+
+function ToggleButton() {
+  const [status, setStatus] = useState("Off");
+
+  function toggleStatus() {
+    if (status === "Off") {
+      setStatus("On");
+    } else {
+      setStatus("Off");
+    }
+  }
+
+  return (
+    <div>
+      <h2>{status}</h2>
+      <button onClick={toggleStatus}>Toggle</button>
+    </div>
+  );
+}
+
+export default ToggleButton;
+
+_____________________________________________________________________________________________________________
+_____________________________________________________________________________________________________________
+
+# Question 02 : 
+    Make a counter with a button. Whenever the count changes, log “Count
+changed” using useEffect.
+
+# Answer 02 : 
+
+    React Counter Using useState and useEffect
+import React, { useState, useEffect } from "react";
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    console.log("Count changed");
+  }, [count]);
+
+  return (
+    <div>
+      <h2>Count: {count}</h2>
+      <button onClick={() => setCount(count + 1)}>Increase</button>
+    </div>
+  );
+}
+
+export default Counter;
+
+_____________________________________________________________________________________________________________
+_____________________________________________________________________________________________________________
+
+# Question 03 : 
+    Write a component that fetches users from
+https://jsonplaceholder.typicode.com/users only once on mount and
+shows how many users were loaded.
+
+# Answer 03 : 
+
+    React Component to Fetch Users on Mount
+import React, { useState, useEffect } from "react";
+
+function UserCounter() {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then(response => response.json())
+      .then(data => {
+        setUsers(data);
+      })
+      .catch(error => {
+        console.error("Error fetching users:", error);
+      });
+  }, []); // runs only once when component mounts
+
+  return (
+    <div>
+      <h2>Total Users Loaded: {users.length}</h2>
+    </div>
+  );
+}
+
+export default UserCounter;
+
+_____________________________________________________________________________________________________________
+_____________________________________________________________________________________________________________
+
+# Question 04 : 
+    Create a component that starts a timer with setInterval to increase a
+“seconds” counter every second. Stop the timer when the component unmounts.
+
+# Answer 04 : 
+    React Timer Component
+import React, { useState, useEffect } from "react";
+
+function Timer() {
+  const [seconds, setSeconds] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setSeconds(prev => prev + 1);
+    }, 1000);
+
+    // Cleanup when component unmounts
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
+  return (
+    <div>
+      <h2>Seconds: {seconds}</h2>
+    </div>
+  );
+}
+
+export default Timer;
+_____________________________________________________________________________________________________________
+_____________________________________________________________________________________________________________
+
+# Question 05 : 
+    Build a small form with a text input. If the input is empty, show “Please
+type your name”. If it has text, show “Hello, <name>”.
+
+# Answer 05 : 
+    React Component for Name Input Form
+import React, { useState } from "react";
+
+function NameForm() {
+  const [name, setName] = useState("");
+
+  function handleChange(event) {
+    setName(event.target.value);
+  }
+
+  return (
+    <div>
+      <input
+        type="text"
+        placeholder="Enter your name"
+        value={name}
+        onChange={handleChange}
+      />
+
+      {name === "" ? (
+        <p>Please type your name</p>
+      ) : (
+        <p>Hello, {name}</p>
+      )}
+    </div>
+  );
+}
+
+export default NameForm;
+_____________________________________________________________________________________________________________
+_____________________________________________________________________________________________________________
+
+# Question 06 : 
+    You have a theme value (“light” or “dark”) that is needed by a deep child
+button. Show how to pass it without sending theme through every parent prop.
+
+# Answer 06 :
+    In React, when a value (like theme) is needed by a deeply nested component, we can use React Context.
+This avoids prop drilling, where we would otherwise pass props through many parent components.
+
+React Context allows data to be shared directly with any child component.
+
+Example Code
+import React, { createContext, useContext } from "react";
+
+// Create Context
+const ThemeContext = createContext();
+
+// Deep Child Component
+function Button() {
+  const theme = useContext(ThemeContext);
+  return <button>Current Theme: {theme}</button>;
+}
+
+// Parent Component
+function App() {
+  const theme = "dark";
+
+  return (
+    <ThemeContext.Provider value={theme}>
+      <Button />
+    </ThemeContext.Provider>
+  );
+}
+
+export default App;
+
+_____________________________________________________________________________________________________________
+_____________________________________________________________________________________________________________
+
+# Question 07 :
+     Make a counter with two buttons: “+1” and “-1”. Use useReducer instead
+of useState.
+
+
+# Answer 07 : 
+    We can create a counter with two buttons (+1 and -1) using the useReducer hook instead of useState.
+
+Example Code
+import React, { useReducer } from "react";
+
+const initialState = 0;
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "increment":
+      return state + 1;
+
+    case "decrement":
+      return state - 1;
+
+    default:
+      return state;
+  }
+}
+
+function Counter() {
+  const [count, dispatch] = useReducer(reducer, initialState);
+
+  return (
+    <div>
+      <h2>Counter: {count}</h2>
+
+      <button onClick={() => dispatch({ type: "increment" })}>
+        +1
+      </button>
+
+      <button onClick={() => dispatch({ type: "decrement" })}>
+        -1
+      </button>
+    </div>
+  );
+}
+
+export default Counter;
+_____________________________________________________________________________________________________________
+_____________________________________________________________________________________________________________
+
+# Question 08 : 
+    Given an array nums = [1,2,3,4] and a filter value min, show how to
+compute a filtered list only when nums or min change. Also pass a stable click handler
+to a child list item.
+
+# Answer 08 :   
+    We can solve this using useMemo and useCallback in React.
+
+import React, { useState, useMemo, useCallback } from "react";
+
+function App() {
+  const nums = [1, 2, 3, 4];
+  const [min, setMin] = useState(2);
+
+  // compute filtered list only when nums or min change
+  const filteredList = useMemo(() => {
+    return nums.filter((num) => num >= min);
+  }, [nums, min]);
+
+  // stable click handler
+  const handleClick = useCallback((num) => {
+    console.log("Clicked:", num);
+  }, []);
+
+  return (
+    <div>
+      <h2>Filtered Numbers</h2>
+
+      <ul>
+        {filteredList.map((num) => (
+          <ListItem key={num} value={num} onClick={handleClick} />
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function ListItem({ value, onClick }) {
+  return (
+    <li onClick={() => onClick(value)}>
+      {value}
+    </li>
+  );
+}
+
+export default App;
+_____________________________________________________________________________________________________________
+_____________________________________________________________________________________________________________
+
+# Question 09 : 
+    Create a controlled input for email. As the user types, show “Email:
+<value>”. Why do we keep the input’s value in state?
+
+# Answer 09 : 
+    A controlled input means the input field value is controlled by the React state.
+
+import React, { useState } from "react";
+
+function EmailInput() {
+  const [email, setEmail] = useState("");
+
+  const handleChange = (event) => {
+    setEmail(event.target.value);
+  };
+
+  return (
+    <div>
+      <input
+        type="email"
+        value={email}
+        onChange={handleChange}
+        placeholder="Enter your email"
+      />
+
+      <p>Email: {email}</p>
+    </div>
+  );
+}
+
+export default EmailInput;
+_____________________________________________________________________________________________________________
+_____________________________________________________________________________________________________________
+
+# Question 10 : 
+    Make a button that focuses an input using a ref. Return adjacent
+elements without extra wrapper nodes. In one sentence, say what React’s update
+process does.
+
+
+# Answer 10 : 
+React’s update process compares the new Virtual DOM with the previous one and updates only the changed parts of the real DOM.
+
+    Focus Input Using Ref and Return Adjacent Elements : 
+
+import React, { useRef } from "react";
+
+function FocusInput() {
+  const inputRef = useRef(null);
+
+  const handleFocus = () => {
+    inputRef.current.focus();
+  };
+
+  return (
+    <>
+      <input ref={inputRef} type="text" placeholder="Type here" />
+      <button onClick={handleFocus}>Focus Input</button>
+    </>
+  );
+}
+
+export default FocusInput;
+_____________________________________________________________________________________________________________
+_____________________________________________________________________________________________________________
+
+_____________________________________________________________________________________________________________
+_____________________________________________________________________________________________________________
+
+_____________________________________________________________________________________________________________
+_____________________________________________________________________________________________________________
