@@ -1,0 +1,504 @@
+# Question 01 : 
+    Create a minimal router with two pages: Home (/) and About (/about).
+Show the links to move between pages.
+
+# Answer 01 : 
+
+    import React from "react";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
+
+// Home Page
+function Home() {
+  return <h2>Home Page</h2>;
+}
+
+// About Page
+function About() {
+  return <h2>About Page</h2>;
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <nav>
+        <Link to="/">Home</Link> |{" "}
+        <Link to="/about">About</Link>
+      </nav>
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+export default App;
+
+____________________________________________________________________________________________________
+____________________________________________________________________________________________________
+
+# Question 02 : 
+    After a user clicks “Save”, programmatically go to /thank-you
+
+# Answer 02 : 
+    import React from "react";
+import { useNavigate } from "react-router-dom";
+
+function SavePage() {
+  const navigate = useNavigate();
+
+  const handleSave = () => {
+    // perform save logic here
+
+    // navigate to /thank-you
+    navigate("/thank-you");
+  };
+
+  return (
+    <div>
+      <h2>Save Page</h2>
+      <button onClick={handleSave}>Save</button>
+    </div>
+  );
+}
+
+export default SavePage;
+
+1. useNavigate Hook
+const navigate = useNavigate();
+
+
+2. Handle Save Button
+navigate("/thank-you");
+____________________________________________________________________________________________________
+____________________________________________________________________________________________________
+
+# Question 03 : 
+     Build a DashboardLayout that shows a heading and a menu. Inside it,
+render DashboardHome at /dashboard and Settings at /dashboard/settings.
+
+# Answer 03 : 
+    import React from "react";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link,
+  Outlet
+} from "react-router-dom";
+
+// Layout Component
+function DashboardLayout() {
+  return (
+    <div>
+      <h2>Dashboard</h2>
+
+      <nav>
+        <Link to="/dashboard">Home</Link> |{" "}
+        <Link to="/dashboard/settings">Settings</Link>
+      </nav>
+
+      {/* Nested routes will render here */}
+      <Outlet />
+    </div>
+  );
+}
+
+// Pages
+function DashboardHome() {
+  return <h3>Dashboard Home</h3>;
+}
+
+function Settings() {
+  return <h3>Settings Page</h3>;
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        {/* Parent Route */}
+        <Route path="/dashboard" element={<DashboardLayout />}>
+          
+          {/* Child Routes */}
+          <Route index element={<DashboardHome />} />
+          <Route path="settings" element={<Settings />} />
+        
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+export default App;
+
+// Nested Routes
+<Route path="/dashboard" element={<DashboardLayout />}>
+
+
+// Navigation Links
+<Link to="/dashboard">Home</Link>
+<Link to="/dashboard/settings">Settings</Link>
+____________________________________________________________________________________________________
+____________________________________________________________________________________________________
+
+# Question 04 : 
+    Create a route /users/:userId. In the UserPage component, read the
+userId from the URL and display it.
+
+# Answer 04 : 
+    import React from "react";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useParams
+} from "react-router-dom";
+
+// User Page Component
+function UserPage() {
+  const { userId } = useParams();
+
+  return <h2>User ID: {userId}</h2>;
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/users/:userId" element={<UserPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+export default App;
+____________________________________________________________________________________________________
+____________________________________________________________________________________________________
+
+# Question 05 : 
+    Only logged-in users should see /dashboard. Others should be redirected
+to /login. Write a minimal ProtectedRoute wrapper.
+
+
+# Answer 05 : 
+    import React from "react";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate
+} from "react-router-dom";
+
+// Dummy auth (true = logged in, false = not logged in)
+const isAuthenticated = false;
+
+// Protected Route Wrapper
+function ProtectedRoute({ children }) {
+  if (!isAuthenticated) {
+    return <Navigate to="/login" />;
+  }
+  return children;
+}
+
+// Pages
+function Dashboard() {
+  return <h2>Dashboard Page</h2>;
+}
+
+function Login() {
+  return <h2>Login Page</h2>;
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+
+        <Route path="/login" element={<Login />} />
+
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+export default App;
+____________________________________________________________________________________________________
+____________________________________________________________________________________________________
+
+# Question 06 : 
+    Create a counter slice with increment and decrement. Configure the store
+and provide it to React.
+
+
+# Answer 06 : 
+
+  //  Create Counter Slice
+// counterSlice.js
+import { createSlice } from "@reduxjs/toolkit";
+
+const initialState = {
+  value: 0
+};
+
+const counterSlice = createSlice({
+  name: "counter",
+  initialState,
+  reducers: {
+    increment: (state) => {
+      state.value += 1;
+    },
+    decrement: (state) => {
+      state.value -= 1;
+    }
+  }
+});
+
+export const { increment, decrement } = counterSlice.actions;
+export default counterSlice.reducer;
+
+// Configure Store
+// store.js
+import { configureStore } from "@reduxjs/toolkit";
+import counterReducer from "./counterSlice";
+
+const store = configureStore({
+  reducer: {
+    counter: counterReducer
+  }
+});
+
+export default store;
+
+// Provide Store to React
+// index.js
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
+import App from "./App";
+import store from "./store";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(
+  <Provider store={store}>
+    <App />
+  </Provider>
+);
+
+
+// Use in Component
+// App.js
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { increment, decrement } from "./counterSlice";
+
+function App() {
+  const count = useSelector((state) => state.counter.value);
+  const dispatch = useDispatch();
+
+  return (
+    <div>
+      <h2>Count: {count}</h2>
+
+      <button onClick={() => dispatch(increment())}>+1</button>
+      <button onClick={() => dispatch(decrement())}>-1</button>
+    </div>
+  );
+}
+
+export default App;
+____________________________________________________________________________________________________
+____________________________________________________________________________________________________
+
+# Question 07 : 
+    Build a Counter component that shows the value and buttons to increment
+and decrement using Redux hooks.
+
+# Answer 07 : 
+    Counter Component Example
+// Counter.js
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { increment, decrement } from "./counterSlice";
+
+function Counter() {
+  const count = useSelector((state) => state.counter.value);
+  const dispatch = useDispatch();
+
+  return (
+    <div>
+      <h2>Count: {count}</h2>
+
+      <button onClick={() => dispatch(increment())}>
+        +1
+      </button>
+
+      <button onClick={() => dispatch(decrement())}>
+        -1
+      </button>
+    </div>
+  );
+}
+
+export default Counter;
+____________________________________________________________________________________________________
+____________________________________________________________________________________________________
+
+# Question 08 : 
+    Create a fetchProducts thunk that loads from /api/products. Handle
+loading and error in the slice.
+
+# Answer 08 : 
+
+    // Create fetchProducts Thunk + Slice
+// productSlice.js
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+
+// Thunk to fetch products
+export const fetchProducts = createAsyncThunk(
+  "products/fetchProducts",
+  async () => {
+    const response = await fetch("/api/products");
+    const data = await response.json();
+    return data;
+  }
+);
+
+const productSlice = createSlice({
+  name: "products",
+  initialState: {
+    items: [],
+    loading: false,
+    error: null
+  },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      // when request starts
+      .addCase(fetchProducts.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      // when request is successful
+      .addCase(fetchProducts.fulfilled, (state, action) => {
+        state.loading = false;
+        state.items = action.payload;
+      })
+      // when request fails
+      .addCase(fetchProducts.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
+  }
+});
+
+export default productSlice.reducer;
+
+// Use in Component
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProducts } from "./productSlice";
+
+function Products() {
+  const dispatch = useDispatch();
+  const { items, loading, error } = useSelector(
+    (state) => state.products
+  );
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
+
+  return (
+    <ul>
+      {items.map((product) => (
+        <li key={product.id}>{product.name}</li>
+      ))}
+    </ul>
+  );
+}
+
+export default Products;
+____________________________________________________________________________________________________
+____________________________________________________________________________________________________
+
+# Question 09 : 
+    Style a “Buy” button using Tailwind. Use a blue background, white text,
+and change the background shade on hover and focus.
+
+# Answer 09 : 
+
+<button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:bg-blue-700">
+  Buy
+</button>
+____________________________________________________________________________________________________
+____________________________________________________________________________________________________
+
+# Question 10: 
+    Create a responsive product list: on small screens one column; on
+medium and up, three columns. Add a hover transition. Also, show how to reuse a utility
+group with @apply.
+
+
+# Answer 10 : 
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+  
+  <div class="p-4 border rounded transition hover:shadow-lg">
+    <h3>Product 1</h3>
+    <p>$10</p>
+  </div>
+
+  <div class="p-4 border rounded transition hover:shadow-lg">
+    <h3>Product 2</h3>
+    <p>$20</p>
+  </div>
+
+  <div class="p-4 border rounded transition hover:shadow-lg">
+    <h3>Product 3</h3>
+    <p>$30</p>
+  </div>
+
+</div>
+
+/* styles.css */
+.product-card {
+  @apply p-4 border rounded transition hover:shadow-lg;
+}
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+  
+  <div class="product-card">
+    <h3>Product 1</h3>
+    <p>$10</p>
+  </div>
+
+  <div class="product-card">
+    <h3>Product 2</h3>
+    <p>$20</p>
+  </div>
+
+</div>
+
+
+____________________________________________________________________________________________________
+____________________________________________________________________________________________________
