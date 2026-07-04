@@ -1,0 +1,222 @@
+# Question 01 :
+    Create a custom event emitter that fires a 'userLoggedIn' event with a username payload. Set up a listener to print a welcome message when the event occurs.
+
+# Answer 01 : 
+The EventEmitter class is used to create custom events. The userLoggedIn event is fired using emit() with a username, and a listener created with on() receives the username and displays a welcome message.
+
+// eventExample.js
+
+const EventEmitter = require("events");
+
+// Create an EventEmitter object
+const emitter = new EventEmitter();
+
+// Create a listener for the "userLoggedIn" event
+emitter.on("userLoggedIn", (username) => {
+  console.log(`Welcome, ${username}!`);
+});
+
+// Fire the event with a username
+emitter.emit("userLoggedIn", "Himanshu");
+
+Output
+Welcome, Himanshu!
+
+______________________________________________________________________________________________________________________________________________________________________________
+______________________________________________________________________________________________________________________________________________________________________________
+
+# Question 02 : 
+    Use the crypto module to create an SHA256 hash for the string "password123".
+
+# Answer 02 : 
+    The crypto module is used to generate secure hashes. createHash("sha256") creates an SHA256 hash, update() adds the input string, and digest("hex") returns the hash in hexadecimal format.
+
+// hash.js
+
+const crypto = require("crypto");
+
+const password = "password123";
+
+const hash = crypto
+  .createHash("sha256")
+  .update(password)
+  .digest("hex");
+
+console.log("SHA256 Hash:", hash);
+
+Example Output
+SHA256 Hash: ef92b778bafe771e89245b89ecbc...
+
+______________________________________________________________________________________________________________________________________________________________________________
+______________________________________________________________________________________________________________________________________________________________________________
+
+# Question 03 : 
+    Use the crypto module to generate a secure, random Version 4 UUID
+
+# Answer 03 : 
+    The crypto.randomUUID() method generates a secure, random Version 4 UUID. Each time the script runs, a unique UUID is created and printed to the console.
+
+// uuid.js
+
+const crypto = require("crypto");
+
+const uuid = crypto.randomUUID();
+
+console.log("UUID:", uuid);
+
+
+Example Output
+UUID: 3f8b9d9e-7d6c-4b3a-9c6f-8d4f5e2a1b7c
+______________________________________________________________________________________________________________________________________________________________________________
+______________________________________________________________________________________________________________________________________________________________________________
+
+# Question 04 : 
+    Write a Node.js script that reads a PORT environment variable. If it's not set, it should default to 3000.
+
+# Answer 04 : 
+    The process.env.PORT property reads the PORT environment variable. If it is not set, the logical OR operator (||) assigns the default value 3000. This ensures the application always has a valid port number.
+
+// app.js
+
+const PORT = process.env.PORT || 3000;
+
+console.log("Server will run on port:", PORT);
+
+Without Setting PORT
+node app.js
+
+Output:
+
+Server will run on port: 3000
+
+
+With PORT Set
+
+Windows (Command Prompt):
+
+set PORT=5000
+node app.js
+
+Output:
+
+Server will run on port: 5000
+
+______________________________________________________________________________________________________________________________________________________________________________
+______________________________________________________________________________________________________________________________________________________________________________
+
+# Question 05 : 
+    Write the minimal code for an Express.js server that listens on port 3000 and responds to GET requests at the root URL (/) with "Hello, Express!".
+
+# Answer 05 : 
+    Create an Express application using express(). Use app.get("/") to handle GET requests to the root URL and respond with "Hello, Express!". Finally, start the server on port 3000 using app.listen().
+
+Install Express
+npm install express
+
+Create the Server (server.js)
+const express = require("express");
+
+const app = express();
+
+app.get("/", (req, res) => {
+  res.send("Hello, Express!");
+});
+
+app.listen(3000, () => {
+  console.log("Server is running on port 3000");
+});
+
+Output (Terminal)
+Server is running on port 3000
+
+
+Browser Output
+
+Open your browser and visit:
+
+http://localhost:3000
+
+You will see:
+
+Hello, Express!
+______________________________________________________________________________________________________________________________________________________________________________
+______________________________________________________________________________________________________________________________________________________________________________
+
+# Question 06 : 
+    Write a SQL statement to create a users table with an auto-incrementing primary 
+key, an email, a password hash, and a creation timestamp.
+
+
+# Answer 06 : 
+    The users table contains an auto-incrementing primary key (id), an email field, a password_hash field, and a created_at timestamp that automatically records the creation time of each user.
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+______________________________________________________________________________________________________________________________________________________________________________
+______________________________________________________________________________________________________________________________________________________________________________
+
+# Question 07 : 
+    Write a SQL statement to insert a new user with the email "test@example.com" into the users table created previously.
+
+# Answer 07 : 
+    The INSERT INTO statement adds a new user to the users table. The id is generated automatically, and the created_at field is filled with the current timestamp by default.
+
+INSERT INTO users (email, password_hash)
+VALUES ('test@example.com', 'sample_hashed_password');
+
+
+______________________________________________________________________________________________________________________________________________________________________________
+______________________________________________________________________________________________________________________________________________________________________________
+
+# Question 08 :
+    Write a SQL query to select the id and email of the user whose email is "test@example.com".
+
+
+# Answer 08 : 
+    The SELECT statement retrieves the id and email columns from the users table. The WHERE clause filters the result to show only the user whose email is "test@example.com".
+    
+SELECT id, email
+FROM users
+WHERE email = 'test@example.com';
+
+______________________________________________________________________________________________________________________________________________________________________________
+______________________________________________________________________________________________________________________________________________________________________________
+
+# Question 09 : 
+    Write a SQL statement to update the email of the user with an id of 1 to "new.email@example.com".
+
+# Answer 09 : 
+    The UPDATE statement modifies the email of the user in the users table. The WHERE clause ensures that only the user with id = 1 is updated.
+
+UPDATE users
+SET email = 'new.email@example.com'
+WHERE id = 1;
+
+
+______________________________________________________________________________________________________________________________________________________________________________
+______________________________________________________________________________________________________________________________________________________________________________
+
+# Question 10 : 
+    Given a users table and a posts table (with a user_id foreign key), write a query to retrieve all posts and the email of the user who wrote them.
+
+# Answer 10 : 
+
+The INNER JOIN query combines the posts and users tables using posts.user_id = users.id. It returns all post details along with the email address of the user who wrote each post.
+
+
+SELECT posts.*, users.email
+FROM posts
+INNER JOIN users
+ON posts.user_id = users.id;
+
+Example Output
+id	title	content	user_id	email
+1	My First Post	Hello World	1	test@example.com
+2	React Basics	Learning React	2	user@example.com
+______________________________________________________________________________________________________________________________________________________________________________
+______________________________________________________________________________________________________________________________________________________________________________
