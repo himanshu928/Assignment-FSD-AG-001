@@ -1,0 +1,346 @@
+# Question 01 : 
+    Write a basic Node.js script that prints "Hello, World!" to the console and show how to execute it.
+
+# Answer 01 : 
+    Create a file named hello.js with console.log("Hello, World!"); and run it using the command node hello.js. The output displayed on the console is Hello, World!.
+    console.log("Hello, World!");
+
+    Run Command:
+    node hello.js
+
+console.log() is used to print output to the console.
+node hello.js runs the JavaScript file using the Node.js runtime.
+
+
+________________________________________________________________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________________________________________________________
+
+
+# Question 02 : 
+    Create a simple CommonJS module that exports a function to add two numbers. Then, create a separate script that imports and uses this function.
+
+# Answer 02 : 
+
+// add.js
+
+function add(a, b) {
+  return a + b;
+}
+
+module.exports = add;
+
+
+
+// app.js
+
+const add = require("./add");
+
+const result = add(10, 20);
+
+console.log("Sum:", result);
+
+
+
+OUTPUT : 
+    Sum: 30
+
+Explanation
+module.exports = add exports the add() function from add.js.
+require("./add") imports the function into app.js.
+add(10, 20) adds the two numbers and returns the result.
+console.log() displays the output on the console.
+
+________________________________________________________________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________________________________________________________
+
+# Question 03 : 
+    Show the commands to initialize a new Node.js project and install the axios package as a dependency.
+
+# Answer 03 : 
+To initialize a new Node.js project, use npm init -y. Then install Axios by running npm install axios. This adds Axios as a dependency in the package.json file.
+
+    Initialize a New Node.js Project
+
+Run the following command:
+
+npm init -y
+
+This creates a package.json file with default settings.
+
+
+Install the Axios Package:
+    npm install axios
+
+package.json :
+
+{
+  "name": "my-project",
+  "version": "1.0.0",
+  "dependencies": {
+    "axios": "^1.x.x"
+  }
+}
+
+npm init -y → Creates a new Node.js project with a default package.json file.
+npm install axios → Downloads and installs the Axios package and adds it to the dependencies section of package.json.
+
+________________________________________________________________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________________________________________________________
+
+# Question 04 : 
+    Write a script that accesses and displays the command-line arguments passed to it when executed.
+
+
+# Answer 04 : 
+    The process.argv array is used to access command-line arguments in Node.js. Using process.argv.slice(2) returns only the user-provided arguments, which can then be displayed using a loop.
+
+Create a File (args.js)
+// args.js
+
+const args = process.argv.slice(2);
+
+console.log("Command-line arguments:");
+
+args.forEach((arg, index) => {
+  console.log(`Argument ${index + 1}: ${arg}`);
+});
+
+Run the Script
+
+Open the terminal and execute:
+
+node args.js Apple Banana Mango
+
+Output
+Command-line arguments:
+Argument 1: Apple
+Argument 2: Banana
+Argument 3: Mango
+________________________________________________________________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________________________________________________________
+
+
+# Question 05 : 
+    Using the fs/promises module, write a script to asynchronously read the content of a file named data.txt and log it to the console.
+
+
+# Answer 05 : 
+    The fs/promises module is used to read files asynchronously. The readFile() method reads the contents of data.txt, await waits for the operation to complete, and console.log() displays the file content. try...catch is used to handle errors.
+
+// readFile.js
+
+const fs = require("fs/promises");
+
+async function readFile() {
+  try {
+    const data = await fs.readFile("data.txt", "utf8");
+    console.log(data);
+  } catch (error) {
+    console.log("Error:", error.message);
+  }
+}
+
+readFile();
+
+Explanation : 
+
+require("fs/promises") imports the Promise-based File System module.
+fs.readFile("data.txt", "utf8") reads the file asynchronously.
+await waits until the file is read.
+console.log(data) displays the file content.
+try...catch handles any errors, such as if the file does not exist.
+
+________________________________________________________________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________________________________________________________
+
+# Question 06 : 
+    Using the fs/promises module, write a script to create a new file named log.txt and write the string "Task completed." into it.
+
+# Answer 06 :
+    The fs/promises module is used to create and write files asynchronously. The writeFile() method creates log.txt and writes "Task completed." into it. await waits for the operation to finish, and try...catch handles any errors.
+
+
+// writeFile.js
+
+const fs = require("fs/promises");
+
+async function createFile() {
+  try {
+    await fs.writeFile("log.txt", "Task completed.");
+    console.log("File created successfully.");
+  } catch (error) {
+    console.log("Error:", error.message);
+  }
+}
+
+createFile();
+
+
+Output (Console)
+File created successfully.
+
+Explanation
+require("fs/promises") imports the Promise-based File System module.
+fs.writeFile("log.txt", "Task completed.") creates a new file named log.txt and writes the given text into it.
+await waits until the file is created and written successfully.
+try...catch is used to handle any errors.
+console.log() displays a success message.
+
+________________________________________________________________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________________________________________________________
+
+# Question 07 : 
+    Use the path module to safely join the segments src, utils, and helpers.js into a single, cross-platform-compatible file path.
+
+# Answer 07 : 
+    The path.join() method is used to safely combine file path segments. It automatically uses the correct path separator for the operating system, making the path cross-platform compatible.
+
+// pathExample.js
+
+const path = require("path");
+
+const filePath = path.join("src", "utils", "helpers.js");
+
+console.log(filePath);
+
+
+Output
+
+src\utils\helpers.js
+
+
+________________________________________________________________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________________________________________________________
+
+# Question 08 : 
+    Create a basic HTTP server using the http module that listens on port 3000 and responds to all requests with "Server is running."
+
+# Answer 08 : 
+    The http module is used to create a basic web server. The server listens on port 3000 and responds to every request with the message "Server is running.". Run the server using node server.js and access it at http://localhost:3000.`
+
+
+// server.js
+
+const http = require("http");
+
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { "Content-Type": "text/plain" });
+  res.end("Server is running.");
+});
+
+server.listen(3000, () => {
+  console.log("Server is listening on port 3000");
+});
+
+
+Output (Terminal)
+Server is listening on port 3000
+
+________________________________________________________________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________________________________________________________
+
+# Question 09 : 
+    Enhance the previous HTTP server to handle two different routes: / should respond with "Homepage", and /about should respond with "About Us".
+
+# Answer 09 : 
+    The server checks req.url to determine the requested route. It returns "Homepage" for /, "About Us" for /about, and "Page Not Found" with a 404 status for all other routes.
+
+// server.js
+
+const http = require("http");
+
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { "Content-Type": "text/plain" });
+
+  if (req.url === "/") {
+    res.end("Homepage");
+  } else if (req.url === "/about") {
+    res.end("About Us");
+  } else {
+    res.writeHead(404, { "Content-Type": "text/plain" });
+    res.end("Page Not Found");
+  }
+});
+
+server.listen(3000, () => {
+  console.log("Server is listening on port 3000");
+});
+
+
+Test the Routes
+
+Visit the following URLs in your browser:
+
+Homepage
+
+http://localhost:3000/
+
+Output
+
+Homepage
+
+About Page
+
+http://localhost:3000/about
+
+Output
+
+About Us
+
+Any Other Route
+
+http://localhost:3000/contact
+
+Output
+
+Page Not Found
+
+
+______________________________________________________________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________________________________________________________
+
+# Question 10 : 
+    Write a script that efficiently reads a large file (large.txt) and outputs its content to the console using streams.
+
+# Answer 10 : 
+    The fs.createReadStream() method is used to read large files efficiently. It reads the file in small chunks instead of loading the entire file into memory. The data event outputs each chunk, the end event indicates completion, and the error event handles any reading errors.
+
+// readStream.js
+
+const fs = require("fs");
+
+const readStream = fs.createReadStream("large.txt", "utf8");
+
+readStream.on("data", (chunk) => {
+  console.log(chunk);
+});
+
+readStream.on("end", () => {
+  console.log("File reading completed.");
+});
+
+readStream.on("error", (error) => {
+  console.log("Error:", error.message);
+});
+
+Example Output
+This is the content of large.txt.
+...
+File reading completed.
+
+Explanation
+fs.createReadStream() creates a read stream for the file.
+The "data" event reads the file chunk by chunk, making it efficient for large files.
+The "end" event is triggered when the entire file has been read.
+The "error" event handles any errors, such as if the file does not exist.
+________________________________________________________________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________________________________________________________
+
+
+
+
+
+
+
+
+
