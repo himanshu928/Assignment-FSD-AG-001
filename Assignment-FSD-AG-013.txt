@@ -1,0 +1,283 @@
+# Question 01 : 
+    Using the `mysql2` library, write a Node.js script to establish a connection to a local
+MySQL database named `app_db`
+
+# Answer 01 : 
+    The mysql2 library is used to connect a Node.js application to a MySQL database. The createConnection() method specifies the connection details, and connect() establishes the connection to the app_db database.
+
+const mysql = require("mysql2");
+
+// Create a connection
+const connection = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "your_password",
+  database: "app_db"
+});
+
+// Connect to MySQL
+connection.connect((err) => {
+  if (err) {
+    console.log("Connection failed:", err.message);
+    return;
+  }
+
+  console.log("Connected to MySQL database!");
+});
+
+Output (If Successful)
+Connected to MySQL database!
+
+_________________________________________________________________________________________________________________________
+_________________________________________________________________________________________________________________________
+
+# Question 02 : 
+    Using an active mysql2 connection, write a function to fetch all rows from a
+products table and log the results.
+
+
+# Answer 02 : 
+    The connection.query() method is used to execute the SQL query SELECT * FROM products. If the query is successful, all rows from the products table are displayed in the console. If an error occurs, it is handled using the callback function.
+
+const mysql = require("mysql2");
+
+// Create database connection
+const connection = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "your_password",
+  database: "app_db"
+});
+
+// Function to fetch all products
+function getProducts() {
+  connection.query("SELECT * FROM products", (err, results) => {
+    if (err) {
+      console.log("Error:", err.message);
+      return;
+    }
+
+    console.log("Products:");
+    console.log(results);
+  });
+}
+
+// Call the function
+getProducts();
+
+_________________________________________________________________________________________________________________________
+_________________________________________________________________________________________________________________________
+
+# Question 03 : 
+    Define a Sequelize model for a Task that has a title (string) and a completed
+(boolean) field.
+
+# Answer 03 : 
+    The Task model is created using sequelize.define(). It contains a title field of type STRING and a completed field of type BOOLEAN with a default value of false.
+
+const { Sequelize, DataTypes } = require("sequelize");
+
+// Create Sequelize connection
+const sequelize = new Sequelize("app_db", "root", "your_password", {
+  host: "localhost",
+  dialect: "mysql",
+});
+
+// Define Task model
+const Task = sequelize.define("Task", {
+  title: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  completed: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
+});
+
+module.exports = Task;
+
+_________________________________________________________________________________________________________________________
+_________________________________________________________________________________________________________________________
+
+# Question 04 : 
+    Using a Sequelize model named Task, write a query to find all tasks and log their
+titles.
+
+# Answer 04 : 
+    The Task.findAll() method is used to fetch all records from the Task table. The returned tasks are looped through using forEach(), and each task's title is printed to the console. try...catch is used for error handling.
+
+// Assume Task model is already created
+
+async function getTasks() {
+  try {
+    const tasks = await Task.findAll();
+
+    tasks.forEach((task) => {
+      console.log(task.title);
+    });
+  } catch (error) {
+    console.log("Error:", error.message);
+  }
+}
+
+getTasks();
+
+_________________________________________________________________________________________________________________________
+_________________________________________________________________________________________________________________________
+
+# Question 05 : 
+    Show the sequelize-cli command to generate a new migration file named
+create-user.
+
+# Answer 05 : 
+    Use the command npx sequelize-cli migration:generate --name create-user to generate a new migration file named create-user in the migrations directory.
+
+Sequelize CLI Command
+npx sequelize-cli migration:generate --name create-user
+
+
+_________________________________________________________________________________________________________________________
+_________________________________________________________________________________________________________________________
+
+# Question 06 :     
+    Write the code to connect to a local MongoDB server and a database named
+inventory using the official mongodb driver.
+
+
+# Answer 06 : 
+    The MongoClient class from the mongodb package is used to connect to a local MongoDB server. After calling client.connect(), the inventory database is selected using client.db("inventory").
+
+const { MongoClient } = require("mongodb");
+
+const url = "mongodb://localhost:27017";
+const client = new MongoClient(url);
+
+async function connectDB() {
+  try {
+    await client.connect();
+
+    const db = client.db("inventory");
+
+    console.log("Connected to MongoDB!");
+    console.log("Database:", db.databaseName);
+  } catch (error) {
+    console.log("Error:", error.message);
+  }
+}
+
+connectDB();
+
+Output
+Connected to MongoDB!
+Database: inventory
+
+
+_________________________________________________________________________________________________________________________
+_________________________________________________________________________________________________________________________
+
+
+# Question 07 : 
+    Using the native MongoDB driver, insert a new document into a users collection
+with a name of "John Doe" and an age of 30.
+
+# Answer 07 :
+    The insertOne() method is used to insert a new document into the users collection. The document contains name: "John Doe" and age: 30. After insertion, the insertedId of the new document is displayed.
+
+const { MongoClient } = require("mongodb");
+
+const url = "mongodb://localhost:27017";
+const client = new MongoClient(url);
+
+async function insertUser() {
+  try {
+    await client.connect();
+
+    const db = client.db("inventory");
+    const users = db.collection("users");
+
+    const result = await users.insertOne({
+      name: "John Doe",
+      age: 30
+    });
+
+    console.log("User inserted with ID:", result.insertedId);
+  } catch (error) {
+    console.log("Error:", error.message);
+  } finally {
+    await client.close();
+  }
+}
+
+insertUser();
+
+_________________________________________________________________________________________________________________________
+_________________________________________________________________________________________________________________________
+
+
+# Question 08 :         
+     Write a MongoDB query to find all users in a collection who are older than 25.
+
+# Answer 08 : 
+    The find() method is used to retrieve documents from a collection. The query { age: { $gt: 25 } } returns all users whose age is greater than 25.
+
+MongoDB Query
+db.users.find({ age: { $gt: 25 } });
+
+
+Using the MongoDB Driver (Node.js)
+const users = await db.collection("users").find({
+  age: { $gt: 25 }
+}).toArray();
+
+console.log(users);
+
+_________________________________________________________________________________________________________________________
+_________________________________________________________________________________________________________________________
+
+
+# Question 09 : 
+    Write a MongoDB query to update a user's age to 31, finding the user by their
+name, "John Doe".
+
+
+# Answer 09 : 
+    The updateOne() method updates a single document in the users collection. It finds the user with the name "John Doe" and uses the $set operator to change the age to 31.
+
+MongoDB Query
+db.users.updateOne(
+  { name: "John Doe" },
+  { $set: { age: 31 } }
+);
+
+Using the MongoDB Driver (Node.js)
+const result = await db.collection("users").updateOne(
+  { name: "John Doe" },
+  { $set: { age: 31 } }
+);
+
+console.log("Modified Count:", result.modifiedCount);
+
+
+_________________________________________________________________________________________________________________________
+_________________________________________________________________________________________________________________________
+
+# Question 10 : 
+     Write a MongoDB query to delete the user with the name "John Doe".
+
+# Answer 10 : 
+    The deleteOne() method removes a single document from the users collection. It searches for the user with the name "John Doe" and deletes that document. deletedCount indicates how many documents were removed.
+
+MongoDB Query
+db.users.deleteOne({ name: "John Doe" });
+
+Using the MongoDB Driver (Node.js)
+const result = await db.collection("users").deleteOne({
+  name: "John Doe"
+});
+
+console.log("Deleted Count:", result.deletedCount);
+
+
+_________________________________________________________________________________________________________________________
+_________________________________________________________________________________________________________________________
